@@ -1,14 +1,15 @@
 # -*-coding:utf-8 -*-
 import time
-import thread
-
-def timer(no,interval):
-	print "timer"
+#import thread
 
 
-def test():
-	timer(1,2)
-	timer(1,1)
+# 不使用线程的方法
+def worker():
+	print "worker"
+	time.sleep(1)
+	return
 
-if __name__ == "__main__":
-	test()
+
+if __name__=='__main__':
+	for i in xrange(5):
+		worker()
