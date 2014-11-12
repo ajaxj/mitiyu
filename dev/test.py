@@ -1,6 +1,6 @@
 # -*-coding:utf-8 -*-
 import time
-#import thread
+
 
 
 # 不使用线程的方法
