@@ -25,15 +25,21 @@ formatter = logging.Formatter('%(name)-12s %(asctime)s %(levelname)-8s %(message
 #     toaddrs='java_cn@msn.com',
 #     subject="your site is err logging",
 #     credentials=('java_cn@msn.com', 'eeeeeeee'))
-#smtp.qq.com 465
-email_handler.setFormatter(formatter)
-logger.addHandler(email_handler)
+
+# email_handler = logging.handlers.SMTPHandler(secure=(),
+#     mailhost=('smtp.163.com', 25),
+#     fromaddr='tmd_sb@163.com',
+#     toaddrs='tmd_sb@163.com',
+#     subject="your site is err logging",
+#     credentials=('tmd_sb@163.com', '273511'))
+# email_handler.setFormatter(formatter)
+# logger.addHandler(email_handler)
 
 
 
 
-#logging.config.fileConfig('logger.conf')
-#logger = logging.getLogger('t2')
+logging.config.fileConfig('logger.conf')
+logger = logging.getLogger('t1')
 
 
 
