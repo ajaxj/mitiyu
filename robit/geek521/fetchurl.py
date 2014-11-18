@@ -11,6 +11,28 @@ logging.config.fileConfig("logger.conf")
 logger = logging.getLogger()	#email log
 
 
+#　旧的处理itindex.net
+# def readUrlToHtml(url):
+# 	try:
+# 		req = urllib2.Request(url)
+# 		res = urllib2.urlopen(req,timeout=30)
+# 		_html = res.read()
+# 		if _html is not None:
+# 			soup = BeautifulSoup(_html)
+# 			div_list = soup.findAll("div",{"class":"post"})
+# 			if len(div_list) == 0:
+# 				logger.error("BeautifulSoup parse html is none")
+# 			else:
+# 				for div in div_list:
+# 					a = div.find("h2").find("a")
+# 					_title = a.string
+# 					_url = a.get("href")
+# 					insertTable(_title,_url)
+# 		else:
+# 			logger.error("BeautifulSoup parse itindex.net html is none")
+# 	except Exception,e:
+# 		logger.error(e)
+
 def readUrlToHtml(url):
 	try:
 		req = urllib2.Request(url)
@@ -18,17 +40,17 @@ def readUrlToHtml(url):
 		_html = res.read()
 		if _html is not None:
 			soup = BeautifulSoup(_html)
-			div_list = soup.findAll("div",{"class":"post"})
-			if len(div_list) == 0:
+			article_list = soup.findAll("article",{"class":"excerpt"})
+			if len(article_list) == 0:
 				logger.error("BeautifulSoup parse html is none")
 			else:
-				for div in div_list:
-					a = div.find("h2").find("a")
+				for article in article_list:
+					a = article.find("h2").find("a")
 					_title = a.string
 					_url = a.get("href")
 					insertTable(_title,_url)
 		else:
-			logger.error("BeautifulSoup parse itindex.net html is none")
+			logger.error("BeautifulSoup parse www.codeceo.com html is none")
 	except Exception,e:
 		logger.error(e)
 
@@ -45,10 +67,11 @@ def insertTable(title,url):
 		cur = conn.cursor()
 		_url = url
 		_title = title
+		_tag = 1
 		sql = "SELECT ID FROM wp_tempposts WHERE post_url = '%s' AND post_title = '%s' limit 1" %(_url,_title)
 		cur.execute(sql)
 		if cur.fetchone() is None:
-			sql = "INSERT INTO wp_tempposts(post_url,post_title,status)VALUES('%s','%s',%d)" %(_url,_title,0)
+			sql = "INSERT INTO wp_tempposts(post_url,post_title,status,tag)VALUES('%s','%s',%d,%d)" %(_url,_title,0,_tag)
 			cur.execute(sql)
 			conn.commit()
 		cur.close()
@@ -59,5 +82,6 @@ def insertTable(title,url):
 
 
 if __name__ == '__main__':
-	url = "http://itindex.net"
+	# url = "http://itindex.net"
+	url ="http://www.codeceo.com/article/category/develop"
 	readUrlToHtml(url)
