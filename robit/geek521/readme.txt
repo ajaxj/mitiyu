@@ -10,3 +10,10 @@ cd /home/www/myrobit/mitiyu/
 /home/env/bin/python fetch8bobs.py
 /home/env/bin/python fetch8bo.py
 deactivate
+
+
+香港服务器上的mitiyu.sh
+
+#!/bin/bash
+cd /home/www/data/py/mitiyu/robit/geek521/
+python fetchurl.py
