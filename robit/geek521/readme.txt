@@ -1,4 +1,4 @@
-//å‚è€ƒé˜¿é‡Œäº‘é‡Œé¢çš„é…ç½®
+//²Î¿¼°¢ÀïÔÆÀïÃæµÄÅäÖÃ
 
 crontab -l
 * 7 * * * /home/mitiyu.sh
@@ -12,8 +12,12 @@ cd /home/www/myrobit/mitiyu/
 deactivate
 
 
-é¦™æ¸¯æœåŠ¡å™¨ä¸Šçš„mitiyu.sh
+Ïã¸Û·þÎñÆ÷ÉÏµÄmitiyu.sh
 
 #!/bin/bash
 cd /home/www/data/py/mitiyu/robit/geek521/
 python fetchurl.py
+
+#*/2 * * * * date >> /home/www/data/time.log
+*/30 * * * * sh /home/www/data/mitiyupost.sh
+00 06 * * * sh /home/www/data/mitiyu.sh
