@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+#/usr/bin/python
 import urllib2
 import MySQLdb
 import logging
