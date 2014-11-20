@@ -4,5 +4,6 @@ CREATE TABLE `wp_tempposts` (
   `post_url` longtext NOT NULL,
   `post_title` text NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
+  `tag` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
