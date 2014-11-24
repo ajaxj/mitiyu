@@ -66,7 +66,7 @@ def pubwp():
 				_post_date_gmt = datetime.utcnow()
 				_post_date_gmt = _post_date_gmt.strftime('%Y-%m-%d %H:%M:%S')
 				# # print  _post_date,_post_date_gmt
-				_post_content = _content
+				_post_content = _content.replace('\'','’')
 				_post_title = _title
 				_post_excerpt = ""
 				_post_status = "publish"#"draft"
