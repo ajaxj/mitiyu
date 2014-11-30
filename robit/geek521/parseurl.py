@@ -32,7 +32,7 @@ def readUrlToHtml(url):
 			# return div
 			# divs = str(div).replace("<div class=\"article-entry bbb\" id=\"article_content\">","").split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
 			divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
-			return divs[0]
+			return divs[0] + "</div>"
 		else:
 			logger.error("BeautifulSoup parse itindex.net html is none")
 			return None
