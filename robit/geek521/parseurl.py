@@ -28,7 +28,7 @@ def readUrlToHtml(url):
 		if _html is not None:
 			soup = BeautifulSoup(_html)
 			# div = soup.findAll("div",{"class":"article-entry"})
-			div = soup.find("div",{"id":"xxx"})
+			div = soup.find("div",{"name":"11"})
 			# return div
 			# divs = str(div).replace("<div class=\"article-entry bbb\" id=\"article_content\">","").split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
 			divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
@@ -212,4 +212,4 @@ def insertTest():
 
 if __name__ == '__main__':
 	pubwp()
-	# print readUrlToHtml('http://www.codeceo.com/article/choose-programming-language.html')
+	# print readUrlToHtml('http://www.codeceo.com/article/android-ui-webview.html')
