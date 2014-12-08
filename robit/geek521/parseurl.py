@@ -27,9 +27,12 @@ def readUrlToHtml(url):
 
 		if _html is not None:
 			soup = BeautifulSoup(_html)
-			div = soup.find("div",{"class":"article-entry"})
-			divs = str(div).replace("<div class=\"article-entry\" id=\"article_content\">","").split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
-			return divs[0]
+			# div = soup.findAll("div",{"class":"article-entry"})
+			div = soup.find("div",{"id":"xxx"})
+			# return div
+			# divs = str(div).replace("<div class=\"article-entry bbb\" id=\"article_content\">","").split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
+			divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
+			return divs[0] + "</div>"
 		else:
 			logger.error("BeautifulSoup parse itindex.net html is none")
 			return None
@@ -66,7 +69,7 @@ def pubwp():
 				_post_date_gmt = datetime.utcnow()
 				_post_date_gmt = _post_date_gmt.strftime('%Y-%m-%d %H:%M:%S')
 				# # print  _post_date,_post_date_gmt
-				_post_content = _content
+				_post_content = _content.replace('\'','’')
 				_post_title = _title
 				_post_excerpt = ""
 				_post_status = "publish"#"draft"
@@ -126,6 +129,7 @@ def pubwp():
 		cur.close()
 		conn.close()
 	except Exception,e:
+		# print e
 		logger.error(e)
 
 
@@ -208,3 +212,4 @@ def insertTest():
 
 if __name__ == '__main__':
 	pubwp()
+	# print readUrlToHtml('http://www.codeceo.com/article/choose-programming-language.html')
