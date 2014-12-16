@@ -27,13 +27,15 @@ def readUrlToHtml(url):
 
 		if _html is not None:
 			soup = BeautifulSoup(_html)
-			# div = soup.findAll("div",{"class":"article-entry"})
-			div = soup.find("div",{"name":"11"})
+			div = soup.findAll("div",{"class":"article-entry"})
+			# div = soup.find("div",{"name":"11"})
 			# return div
 			# divs = str(div).replace("<div class=\"article-entry bbb\" id=\"article_content\">","").split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
 			# divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
-			divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-left:-8px;margin-top:30px\">")
+			# divs = str(div[0]).split("<div class=\"bd-ad-bottom\" style=\"margin-left:-8px;margin-top:30px\">")
+			divs = str(div[0]).split("<a id=\"soft-link\" name=\"soft-link\"></a>")
 			return divs[0] + "</div>"
+
 		else:
 			logger.error("BeautifulSoup parse itindex.net html is none")
 			return None
@@ -213,4 +215,4 @@ def insertTest():
 
 if __name__ == '__main__':
 	pubwp()
-	# print readUrlToHtml('http://www.codeceo.com/article/android-ui-webview.html')
+	# print readUrlToHtml('http://www.codeceo.com/article/java-stack.html')
