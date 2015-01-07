@@ -34,8 +34,12 @@ def readUrlToHtml(url):
 			# divs = str(div).split("<div class=\"bd-ad-bottom\" style=\"margin-top:30px\">")
 			# divs = str(div[0]).split("<div class=\"bd-ad-bottom\" style=\"margin-left:-8px;margin-top:30px\">")
 			divs = str(div[0]).split("<a id=\"soft-link\" name=\"soft-link\"></a>")
+			# print divs[0]
 			_divs = divs[0].split("</script>")
-			return "<div class=\"article-entry\"><div>" + _divs[2] + "</div>"
+			if len(_divs) == 1:
+				return _divs[0]  + "</div>"
+			else:
+				return "<div class=\"article-entry\"><div>" + _divs[2] + "</div>"
 			
 		else:
 			logger.error("BeautifulSoup parse itindex.net html is none")
@@ -216,4 +220,5 @@ def insertTest():
 
 if __name__ == '__main__':
 	pubwp()
-	# print readUrlToHtml('http://www.codeceo.com/article/java-stack.html')
+	# print readUrlToHtml('http://www.codeceo.com/article/8-new-html5-animation.html')
+	# print readUrlToHtml("http://www.codeceo.com/article/java-8-enum.html")
